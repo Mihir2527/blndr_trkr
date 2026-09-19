@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Blunders" />
+  <title>Blunder Tracker</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">BLUNDER TRACKER</p>
+        <h1>Today</h1>
+        <p id="todayLabel" class="muted"></p>
+      </div>
+      <button id="installBtn" class="ghost-button hidden" type="button">Install</button>
+    </header>
+
+    <section class="counter-grid" aria-label="Today's counters">
+      <article class="counter-card">
+        <div class="counter-title">T</div>
+        <div id="tCount" class="counter-value" aria-live="polite">0</div>
+        <div class="counter-actions">
+          <button class="minus-button" id="tMinus" type="button" aria-label="Decrease T">−</button>
+          <button class="plus-button" id="tPlus" type="button" aria-label="Increase T">+ T</button>
+        </div>
+      </article>
+
+      <article class="counter-card">
+        <div class="counter-title">A</div>
+        <div id="aCount" class="counter-value" aria-live="polite">0</div>
+        <div class="counter-actions">
+          <button class="minus-button" id="aMinus" type="button" aria-label="Decrease A">−</button>
+          <button class="plus-button" id="aPlus" type="button" aria-label="Increase A">+ A</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="summary-row" aria-label="Today summary">
+      <div>
+        <span class="muted">Total today</span>
+        <strong id="totalToday">0</strong>
+      </div>
+      <button id="undoBtn" class="text-button" type="button" disabled>Undo last</button>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">TREND</p>
+          <h2>Blunders over time</h2>
+        </div>
+        <select id="rangeSelect" aria-label="Graph range">
+          <option value="7">7 days</option>
+          <option value="30">30 days</option>
+          <option value="all">All time</option>
+        </select>
+      </div>
+
+      <div class="legend" aria-hidden="true">
+        <span><i class="legend-line t-line"></i>T</span>
+        <span><i class="legend-line a-line"></i>A</span>
+      </div>
+
+      <div class="chart-wrap">
+        <canvas id="trendChart" width="800" height="360" aria-label="Line graph of T and A counts over time"></canvas>
+        <p id="emptyChart" class="empty-state hidden">Your graph will appear as you log more days.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">HISTORY</p>
+          <h2>Recent days</h2>
+        </div>
+        <button id="exportBtn" class="ghost-button" type="button">Export CSV</button>
+      </div>
+
+      <div id="historyList" class="history-list"></div>
+    </section>
+
+    <p class="footer-note">Everything is stored only in this browser on this device.</p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
